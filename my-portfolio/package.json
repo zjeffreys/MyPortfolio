@@ -9,7 +9,7 @@
     "lint": "BASELINE_BROWSER_MAPPING_IGNORE_OLD_DATA=true eslint"
   },
   "dependencies": {
-    "next": "16.0.1",
+    "next": "^16.2.2",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
