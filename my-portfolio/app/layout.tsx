@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Rubik} from "next/font/google";
+import { Geist, Geist_Mono, Rubik } from "next/font/google";
 import "./globals.css";
-import "./components/navbar"
 import Navbar from "./components/navbar";
 
 const geistSans = Geist({
@@ -9,9 +8,10 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const rubikOne = Rubik({
+const rubik = Rubik({
+  variable: "--font-rubik",
   subsets: ["latin"],
-  weight: ["400","700"]  // choose weights that fit your design
+  weight: ["400", "500", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -20,8 +20,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Zach's Portfolio",
-  description: "This is my portfolio",
+  title: "Zachary Jeffreys | AI Systems Engineer",
+  description:
+    "Portfolio of Zachary Jeffreys, a software engineer building AI systems, data products, and polished web experiences.",
 };
 
 export default function RootLayout({
@@ -30,9 +31,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-          <body className={`${rubikOne.className} antialiased bg-black`}>
-        <Navbar/>
+    <html lang="en" className="bg-[var(--background-primary)]">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${rubik.variable} bg-[var(--background-primary)] antialiased`}
+      >
+        <Navbar />
         {children}
       </body>
     </html>
