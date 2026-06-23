@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { Geist, Geist_Mono, Rubik } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-});
-
-const rubik = Rubik({
-  variable: "--font-rubik",
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -21,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Zachary Jeffreys | AI Systems Engineer",
+  title: "Zachary Jeffreys | PNW Tech Builder",
   description:
-    "Portfolio of Zachary Jeffreys, a software engineer building AI systems, data products, and polished web experiences.",
+    "AI engineer exploring the Pacific Northwest tech ecosystem — founder interviews, meetup recaps, startup spotlights, and local builder stories.",
 };
 
 export default function RootLayout({
@@ -32,11 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-[var(--background-primary)]">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${rubik.variable} bg-[var(--background-primary)] antialiased`}
-      >
-        <Navbar />
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
         <Analytics />
       </body>

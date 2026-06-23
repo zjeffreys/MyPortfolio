@@ -1,94 +1,110 @@
-import Image from "next/image";
-import { Badge, ButtonLink } from "./ui";
+"use client";
 
-const focusAreas = [
-  "AI Systems",
-  "Cloud Infrastructure",
-  "Full-Stack Delivery",
+import HeroParallax from "./hero-parallax";
+import { ButtonLink } from "./ui";
+import { InstagramIcon, LinkedInIcon, YouTubeIcon } from "./social-icons";
+
+const navItems = [
+  { label: "Videos", href: "#videos" },
+  { label: "Events", href: "#events" },
+  { label: "Contact", href: "#contact" },
+];
+
+const socialLinks = [
+  {
+    label: "Watch on YouTube",
+    href: "https://www.youtube.com/@ZachJeffreys",
+    icon: <YouTubeIcon />,
+    className: "social-chip social-chip--youtube",
+  },
+  {
+    label: "Connect on LinkedIn",
+    href: "https://www.linkedin.com/in/zacharybjeffreys/",
+    icon: <LinkedInIcon />,
+    className: "social-chip social-chip--linkedin",
+  },
+  {
+    label: "Follow on Instagram",
+    href: "#",
+    icon: <InstagramIcon />,
+    className: "social-chip social-chip--instagram",
+  },
 ];
 
 export default function Hero() {
   return (
-    <section id="home" className="section-shell pb-14 pt-16 sm:pb-20 sm:pt-24 lg:pt-28">
+    <header className="hero-wrap">
+      <div className="hero-parallax-layer" aria-hidden="true">
+        <HeroParallax />
+        <div className="hero-scrim" />
+      </div>
+
       <div className="section-inner">
-        <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(340px,0.9fr)] lg:gap-16">
-          <div className="flex max-w-2xl flex-col gap-6 sm:gap-8">
-            <span className="section-eyebrow">AI systems engineer / product builder</span>
-
-            <div className="space-y-4 sm:space-y-5">
-              <h1 className="display-title max-w-[12ch] text-[clamp(2.35rem,11vw,5.4rem)] leading-[0.98] sm:max-w-none">
-                AI systems that
-                <br className="hidden sm:block" />
-                <span className="sm:hidden"> </span>
-                automate real business workflows<span className="text-[var(--accent-orange)]">.</span>
-              </h1>
-
-              <div className="space-y-3">
-                <p className="text-xl font-semibold tracking-[-0.03em] text-[var(--text-primary)] sm:text-2xl">
-                  Zachary Jeffreys
-                </p>
-                <p className="max-w-xl text-base leading-7 text-[var(--text-secondary)] sm:text-xl sm:leading-8">
-                  Software engineer focused on AI workflows, backend systems,
-                  and product UIs that feel fast, credible, and easy to trust.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <ButtonLink href="#projects" variant="secondary" className="w-full sm:w-auto">
-                View Projects
-              </ButtonLink>
-              <ButtonLink href="#contact" variant="primary" className="w-full sm:w-auto">
-                Get In Touch
-              </ButtonLink>
-            </div>
-
-            <div className="flex flex-wrap gap-2.5 sm:gap-3">
-              {focusAreas.map((item, index) => (
-                <Badge
-                  key={item}
-                  tone={index === 0 ? "highlight" : "default"}
-                >
-                  {item}
-                </Badge>
+        <nav className="site-nav" aria-label="Primary">
+          <span className="site-nav__name">Zachary Jeffreys</span>
+          <div className="site-nav__end">
+            <ul className="site-nav__links">
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <a href={item.href}>{item.label}</a>
+                </li>
               ))}
-            </div>
+            </ul>
+            <a className="nav-status" href="#contact">
+              <span className="status-dot" />
+              Open to roles
+            </a>
           </div>
+        </nav>
 
-          <div className="relative mx-auto w-full max-w-[470px]">
-            <div className="surface-panel-strong overflow-hidden p-4 sm:p-6">
-              <div className="rounded-[18px] border border-[var(--border-subtle)] bg-[rgba(10,25,47,0.62)] px-4 py-3">
-                <p className="text-xs uppercase tracking-[0.22em] text-[var(--text-muted)]">
-                  Current focus
-                </p>
-                <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">
-                  AI products, backend architecture, and web interfaces with a
-                  clean, technical visual language.
-                </p>
+        <div className="hero-content">
+          <div className="hero-grid">
+            <div>
+              <p className="hero-eyebrow">AI engineer · PNW tech creator</p>
+              <h1 className="hero-title">
+                Exploring the people and startups shaping the PNW tech scene
+                <span className="text-[var(--accent-green)]">.</span>
+              </h1>
+              <p className="hero-bio">
+                I explore the Pacific Northwest tech ecosystem through founder
+                interviews, meetup recaps, startup spotlights, and conversations
+                with the builders shaping what&apos;s next.
+              </p>
+              <div className="social-chips">
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className={link.className}
+                    target={link.href.startsWith("http") ? "_blank" : undefined}
+                    rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  >
+                    {link.icon}
+                    {link.label}
+                  </a>
+                ))}
               </div>
-
-              <div className="mt-4 overflow-hidden rounded-[22px] border border-[var(--border-subtle)] bg-[linear-gradient(180deg,rgba(17,34,64,0.78),rgba(10,25,47,0.92))] sm:mt-5">
-                <Image
-                  src="/images/avatar.png"
-                  alt="Zachary Jeffreys"
-                  width={420}
-                  height={420}
-                  className="mx-auto h-auto w-full max-w-[280px] object-contain pt-4 sm:max-w-[340px] sm:pt-6"
-                  priority
-                />
+              <div className="hero-cta">
+                <ButtonLink href="#videos" variant="primary">
+                  Watch latest video
+                </ButtonLink>
+                <ButtonLink href="#contact" variant="ghost">
+                  Get in touch
+                </ButtonLink>
               </div>
+            </div>
 
-              <div className="mt-4 flex flex-wrap gap-2.5 sm:mt-5 sm:gap-3">
-                <Badge tone="highlight">
-                  <span className="mr-2 inline-block h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
-                  Available for engineering roles
-                </Badge>
-                <Badge>AI + Full Stack</Badge>
+            <div className="hero-panel" id="videos">
+              <h2>Latest from the channel</h2>
+              <div className="latest-video">▶ Seattle AI Meetup — June recap</div>
+              <div className="status-row">
+                <span className="status-dot" />
+                <span>Filming 2 events this month · Newsletter drops Fridays</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </header>
   );
 }

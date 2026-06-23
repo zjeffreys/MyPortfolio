@@ -1,15 +1,17 @@
 import Hero from "./components/hero";
-import Banner from "./components/banner";
-import Projects from "./components/projects";
+import Events from "./components/events";
+import About from "./components/about";
 import Contact from "./components/contact";
+import SiteFooter from "./components/site-footer";
 
 export default function Home() {
   return (
     <main className="page-shell">
       <Hero />
-      <Banner />
-      <Projects />
+      <Events />
+      <About />
       <Contact />
+      <SiteFooter />
     </main>
   );
 }
